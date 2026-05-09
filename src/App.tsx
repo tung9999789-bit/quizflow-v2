@@ -605,7 +605,7 @@ export default function App() {
               exit={{ opacity: 0, scale: 0.9 }}
               className="bg-white rounded-[32px] p-8 max-w-lg w-full shadow-2xl space-y-6 relative"
             >
-              <button onClick={() => setShowGuide(false)} className="absolute top-6 right-6 text-slate-400 hover:text-slate-600"><XCircle size={24} /></button>
+              <button onClick={() => setShowGuide(false)} className="absolute top-6 right-6 text-slate-400 hover:text-slate-600"><XCircle size={24} />
               <h3 className="text-2xl font-black text-indigo-600">Cách sử dụng QuizFlow AI</h3>
               <div className="space-y-4 text-slate-600 text-sm leading-relaxed text-left">
                 <p><strong>1. Tạo bài:</strong> Nhấn "Tạo bài tập mới" và tải file Word (.docx) chứa câu hỏi của bạn lên.</p>
@@ -620,3 +620,4 @@ export default function App() {
       </AnimatePresence>
     </div>
   );
+  }
