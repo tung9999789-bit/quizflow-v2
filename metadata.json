@@ -1,0 +1,6 @@
+{
+  "name": "QuizMaster AI",
+  "description": "Ứng dụng tạo bài tập trắc nghiệm thông minh từ file Word sử dụng AI, hỗ trợ xuất Excel và làm bài trực tuyến.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
