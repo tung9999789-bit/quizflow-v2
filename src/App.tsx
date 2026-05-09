@@ -32,6 +32,7 @@ type View = 'start' | 'create' | 'take-preview' | 'taking' | 'result';
 
 export default function App() {
   const [view, setView] = useState<View>('start');
+  const [showGuide, setShowGuide] = useState(false);
   const [loading, setLoading] = useState(false);
   const [currentQuiz, setCurrentQuiz] = useState<Quiz | null>(null);
   const [quizCode, setQuizCode] = useState('');
@@ -164,7 +165,7 @@ export default function App() {
           <span className="text-xl font-bold tracking-tight">QuizFlow <span className="text-indigo-600">AI</span></span>
         </div>
         <div className="flex items-center gap-6 text-sm font-medium text-slate-500">
-          <button onClick={() => setView('start')} className="hover:text-indigo-600 transition-colors">Hướng dẫn</button>
+          <button onClick={() => setShowGuide(true)} className="hover:text-indigo-600 transition-colors">Hướng dẫn</button>
           <button onClick={() => setView('create')} className="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all">Tạo mới</button>
         </div>
       </nav>
@@ -590,8 +591,32 @@ export default function App() {
 
       {/* Footer */}
       <footer className="py-12 px-6 border-t border-gray-100 text-center space-y-4">
-        <p className="text-gray-400 text-sm">© 2026 QuizMaster AI. Made with ❤️ for education.</p>
+        <p className="text-gray-400 text-sm">
+          © 2026 QuizFlow AI. Ứng dụng này được phát triển bởi <strong>Phạm Thanh Tùng</strong> nhằm mục đích hỗ trợ học tập hiệu quả hơn cùng công nghệ AI hiện đại!
+        </p>
       </footer>
+
+      <AnimatePresence>
+        {showGuide && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }} 
+              animate={{ opacity: 1, scale: 1 }} 
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="bg-white rounded-[32px] p-8 max-w-lg w-full shadow-2xl space-y-6 relative"
+            >
+              <button onClick={() => setShowGuide(false)} className="absolute top-6 right-6 text-slate-400 hover:text-slate-600"><XCircle size={24} /></button>
+              <h3 className="text-2xl font-black text-indigo-600">Cách sử dụng QuizFlow AI</h3>
+              <div className="space-y-4 text-slate-600 text-sm leading-relaxed text-left">
+                <p><strong>1. Tạo bài:</strong> Nhấn "Tạo bài tập mới" và tải file Word (.docx) chứa câu hỏi của bạn lên.</p>
+                <p><strong>2. AI xử lý:</strong> Gemini sẽ tự động tạo thêm các đáp án nhiễu và viết lời giải chi tiết.</p>
+                <p><strong>3. Làm bài:</strong> Nhập tên và Mã bài tập để bắt đầu ôn luyện.</p>
+                <p><strong>4. Kết quả:</strong> Sau khi xong, bạn có thể xem giải thích từng câu và xuất file Excel.</p>
+              </div>
+              <button onClick={() => setShowGuide(false)} className="w-full py-4 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100">Đã hiểu</button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
-}
